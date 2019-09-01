@@ -7,10 +7,13 @@ package com.home.reminder.entities;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
 @Entity
@@ -22,6 +25,10 @@ public class APPOINTMENT {
 	private Date date;
 	private String name;
 	private Timestamp timestamp;
+	@OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "appointment")
+    private APPOINTMENT_REMINDER appointmentReminder;
 	
 	public APPOINTMENT(Date date, String name) {
 		super();
@@ -35,6 +42,9 @@ public class APPOINTMENT {
 	void preInsert() {
 		if (this.timestamp == null) {
 			this.timestamp = new Timestamp(System.currentTimeMillis());
+		}
+		if (this.appointmentReminder == null) {
+			this.appointmentReminder = new APPOINTMENT_REMINDER();
 		}
 	}
 
@@ -60,6 +70,20 @@ public class APPOINTMENT {
 
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	/**
+	 * @return the appointmentReminder
+	 */
+	public APPOINTMENT_REMINDER getAppointmentReminder() {
+		return appointmentReminder;
+	}
+
+	/**
+	 * @param appointmentReminder the appointmentReminder to set
+	 */
+	public void setAppointmentReminder(APPOINTMENT_REMINDER appointmentReminder) {
+		this.appointmentReminder = appointmentReminder;
 	}
 
 	public APPOINTMENT() {}
