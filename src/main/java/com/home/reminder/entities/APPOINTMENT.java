@@ -86,6 +86,16 @@ public class APPOINTMENT {
 	public void setAppointmentReminder(APPOINTMENT_REMINDER appointmentReminder) {
 		this.appointmentReminder = appointmentReminder;
 	}
+	
+	@Override
+	public String toString() {
+	    return "{" +
+	            "id=" + id +
+	            ", date='" + date + '\'' +
+	            ", name='" + name + '\'' +
+	            ", timestamp=" + timestamp +
+	            '}';
+	}
 
 	public APPOINTMENT() {}
 	
