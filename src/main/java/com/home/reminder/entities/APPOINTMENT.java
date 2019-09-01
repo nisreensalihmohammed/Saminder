@@ -45,6 +45,7 @@ public class APPOINTMENT {
 		}
 		if (this.appointmentReminder == null) {
 			this.appointmentReminder = new APPOINTMENT_REMINDER();
+			this.appointmentReminder.setAppointment(this);
 		}
 	}
 
