@@ -1,2 +1,3 @@
 # Saminder
-A reactive application that reminds and monitor your daily important actions.
+
+A Java Spring Boot API that supports CRUD operations on SQL database through RESTful API
